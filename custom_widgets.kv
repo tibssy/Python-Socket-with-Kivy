@@ -1,0 +1,90 @@
+<CustomBoxLayout@BoxLayout>
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: app.COLOR_LIGHT
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [10]
+
+<Header@CustomBoxLayout>
+    addr: ('0','0')
+    color: app.COLOR_DARK
+    bold: True
+    CustomLabel:
+        text: f'IP Address: {root.addr[0]}'
+        color: root.color
+        bold: root.bold
+    CustomLabel:
+        text: f'Port: {root.addr[1]}'
+        color: root.color
+        bold: root.bold
+
+<RV@RecycleView>
+    viewclass: 'Message'
+    scroll_y: 0
+    bar_width: 5
+    RecycleBoxLayout:
+        padding: 10
+        default_size: None, 60
+        spacing: 10
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+<Message@BoxLayout>
+    orientation: 'horizontal'
+    name: ''
+    text: ''
+    canvas.before:
+        Color:
+            rgba: app.COLOR_DARK
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [10]
+    CustomLabel:
+        size_hint_x: 0.3
+        text: f'{root.name}' if root.name else ''
+        halign: 'left'
+        color: app.COLOR_LIGHT
+    CustomLabel:
+        size_hint_x: 0.7
+        text: root.text
+        halign: 'right'
+        color: app.COLOR_LIGHT
+
+<CustomLabel@Label>
+    text_size: self.size
+    halign: 'center'
+    valign: 'middle'
+    multiline: False
+    padding_x: 20
+    font_size: self.height * 0.6
+
+<CustomTextInput@TextInput>
+    padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+    font_size: self.height * 0.6
+    halign: 'right'
+    multiline: False
+    background_normal: ''
+    background_active: ''
+    background_color: app.COLOR_LIGHT
+    hint_text_color: 0.7,0,0,1
+    cursor_color: app.COLOR_DARK
+    foreground_color: app.COLOR_DARK
+
+<RoundedButton@Button>
+    multiline: False
+    background_normal: ''
+    background_color: 0,0,0,0
+    color: app.COLOR_LIGHT
+    canvas.before:
+        Color:
+            rgba: app.COLOR_DARK if self.state == 'normal' else app.COLOR_MID
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [10]

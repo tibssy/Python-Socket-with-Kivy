@@ -1,0 +1,24 @@
+#:include custom_widgets.kv
+
+<MyLayout>
+    orientation: 'vertical'
+    padding: 20
+    spacing: 20
+    canvas.before:
+        Color:
+            rgba: app.COLOR_DARK
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Header:
+        id: info
+        size_hint_y: 0.16
+
+    CustomBoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 0.84
+
+        RV:
+            id: messages
+

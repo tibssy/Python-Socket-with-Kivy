@@ -1,0 +1,33 @@
+#:include custom_widgets.kv
+
+<MyLayout>
+    orientation: 'vertical'
+    padding: 20
+    spacing: 20
+    canvas.before:
+        Color:
+            rgba: app.COLOR_DARK
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    CustomBoxLayout:
+        id: history
+        size_hint_y: 0.84
+        RV:
+            id: history
+
+    CustomBoxLayout:
+        size_hint_y: 0.16
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 10
+            spacing: 10
+            CustomTextInput:
+                id: npt
+                size_hint_x: 0.8
+            RoundedButton:
+                size_hint_x: 0.2
+                text: 'Submit'
+                font_size: sp(32)
+                on_release: app.submit(npt.text)
